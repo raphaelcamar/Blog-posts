@@ -1,8 +1,13 @@
 import { Outlet, Route, Routes } from 'react-router';
+import { DropdownButton } from '@/components/drop-down-button';
 
 const BlogLayout = () => (
   <>
     <h1>Blog</h1>
+    <DropdownButton
+      buttonTitle="Category"
+      items={['Category a', 'Category b', 'Category c', 'Category d', 'Category e', 'Category f']}
+    />
     <Outlet />
   </>
 );
