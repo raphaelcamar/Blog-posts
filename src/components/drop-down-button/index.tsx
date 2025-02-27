@@ -29,7 +29,12 @@ export const DropdownButton = ({ buttonTitle, items }: DropdownButtonProps) => {
       return `${selected[0]}, ${selected[1]} and more ${selected.length - 2}`;
     }
 
-    return selected.join(',');
+    const formatter = new Intl.ListFormat('en', {
+      style: 'long',
+      type: 'conjunction',
+    });
+
+    return formatter.format(selected);
   };
 
   return (
