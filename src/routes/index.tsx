@@ -1,22 +1,5 @@
-import { Outlet, Route, Routes } from 'react-router';
-import { DropdownButton } from '@/components/drop-down-button';
-
-const BlogLayout = () => (
-  <>
-    <h1>Blog</h1>
-    <DropdownButton
-      buttonTitle="Category"
-      items={['Category a', 'Category b', 'Category c', 'Category d', 'Category e', 'Category f']}
-    />
-    <Outlet />
-  </>
-);
-
-const BlogList = () => (
-  <>
-    <p>Lista de posts</p>
-  </>
-);
+import { Route, Routes } from 'react-router';
+import { HomePage } from '@/pages/home';
 
 const BlogPost = () => (
   <>
@@ -29,8 +12,7 @@ const NotFound = () => <h1>Página não encontrada</h1>;
 
 export const RootRoutes = () => (
   <Routes>
-    <Route path="/" element={<BlogLayout />}>
-      <Route index element={<BlogList />} />
+    <Route path="/" element={<HomePage />}>
       <Route path=":id" element={<BlogPost />} />
     </Route>
 

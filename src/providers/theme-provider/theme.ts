@@ -28,11 +28,11 @@ export const theme: DefaultTheme = {
     },
   },
   font: {
-    h1: '3.5rem/130% 700',
-    h2: '2.25rem/130% 700',
-    h3: '1.25rem/130% 700',
-    caption: '0.75rem/130% 400',
-    bodyLarge: '1rem/150% 400',
-    bodySmall: '0.875rem/150% 400',
+    h1: '700 3.5rem/130% Open Sans',
+    h2: '700 2.25rem/130% Open Sans',
+    h3: '700 1.25rem/130% Open Sans',
+    caption: '400 0.75rem/130% Open Sans',
+    bodyLarge: '400 1rem/150% Open Sans',
+    bodySmall: '400 0.875rem/150% Open Sans',
   },
 };
