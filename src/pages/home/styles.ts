@@ -23,6 +23,10 @@ export const SortOption = styled.div`
   p {
     font: ${({ theme }) => theme.font.bodySmall};
     font-weight: bold;
+
+    @media (max-width: 960px) {
+      display: none;
+    }
   }
 
   span {
@@ -33,4 +37,8 @@ export const SortOption = styled.div`
 
 export const Subtitle = styled.h2`
   font: ${({ theme }) => theme.font.h2};
+`;
+
+export const Spacing = styled.div`
+  padding: 16px;
 `;

@@ -31,7 +31,9 @@ export const HomePage = () => {
           <SortIcon color={theme.palette.accent1.medium} />
         </S.SortOption>
       </S.SortOptionsAndSubtitle>
-      <Outlet />
+      <S.Spacing>
+        <Outlet />
+      </S.Spacing>
     </S.Wrapper>
   );
 };
