@@ -12,6 +12,7 @@
   "author": "Raphael Camargo",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.8.1",
     "process": "^0.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
