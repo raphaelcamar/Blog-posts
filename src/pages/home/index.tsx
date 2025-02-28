@@ -1,14 +1,28 @@
 import { Outlet } from 'react-router';
-import { DropdownButton } from '@/components/molecules';
+import { useState } from 'react';
+import { DropdownButton, SortButton } from '@/components/molecules';
 import { Header } from '@/components/header';
 import * as S from './styles';
-import { useThemeContext } from '@/providers/theme-provider';
-import { Icon, ResponsiveToggle } from '@/components/atoms';
+import { ResponsiveToggle } from '@/components/atoms';
 
 export const HomePage = () => {
-  const theme = useThemeContext();
-
   const renderDesktopSubtitle = () => <S.Subtitle>DWS blog</S.Subtitle>;
+
+  const [sortBy, setSortBy] = useState<'newest' | 'oldest'>('newest');
+
+  const getSortButtonTitle = () => {
+    if (sortBy === 'newest') return 'Newest First';
+
+    return 'Oldest first';
+  };
+
+  const updateSortOption = () => {
+    if (sortBy === 'newest') {
+      setSortBy('oldest');
+    } else {
+      setSortBy('newest');
+    }
+  };
 
   return (
     <S.Wrapper>
@@ -26,8 +40,7 @@ export const HomePage = () => {
         </ResponsiveToggle>
         <S.SortOption>
           <p>Sort By:</p>
-          <span>Newest first</span>
-          <Icon icon="sort" color={theme.palette.accent1.medium} />
+          <SortButton onClick={() => updateSortOption()}>{getSortButtonTitle()}</SortButton>
         </S.SortOption>
       </S.SortOptionsAndSubtitle>
       <S.Spacing>

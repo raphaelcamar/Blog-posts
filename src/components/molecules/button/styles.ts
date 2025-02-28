@@ -40,6 +40,7 @@ export const Button = styled.button<{ outlined: boolean; hasIcon: boolean }>`
   cursor: pointer;
   font: ${({ theme }) => theme.font.bodyLarge};
   font-weight: 600;
+  transition: all ease 0.2s;
 
   ${({ outlined, theme }) => (outlined ? getOutlinedStyle(theme) : getFilledStyled(theme))};
 `;
