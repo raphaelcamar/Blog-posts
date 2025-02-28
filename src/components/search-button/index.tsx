@@ -1,4 +1,4 @@
-import CloseIcon from '../icons/close-icon';
+import { Icon } from '../icon';
 import * as S from './styles';
 
 export const SearchButton = () => (
@@ -6,7 +6,7 @@ export const SearchButton = () => (
     <S.Action />
     <input placeholder="search" />
     <S.Action>
-      <CloseIcon color="black" />
+      <Icon icon="close" color="black" />
     </S.Action>
   </S.InputWrapper>
 );

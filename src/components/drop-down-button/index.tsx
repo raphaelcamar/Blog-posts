@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import * as S from './styles';
-import ArrowDownIcon from '../icons/arrow-down-icon';
 import { useThemeContext } from '@/providers/theme-provider';
-import { ClickAwayListener } from '../click-away-listener';
-import { ConditionalSlot } from '../conditional-slot';
-import CloseIcon from '../icons/close-icon';
+import { ClickAwayListener } from '@/components/click-away-listener';
+import { ConditionalSlot } from '@/components/conditional-slot';
+import { Icon } from '../icon';
 
 type DropdownButtonProps = {
   items: string[];
@@ -17,7 +16,6 @@ export const DropdownButton = ({ buttonTitle, items }: DropdownButtonProps) => {
 
   const theme = useThemeContext();
 
-  // Consertar lógica
   const selectItem = (item: string) => {
     if (!selected.find(selectedItem => selectedItem === item)) {
       setSelected(oldState => [...oldState, item]);
@@ -26,7 +24,11 @@ export const DropdownButton = ({ buttonTitle, items }: DropdownButtonProps) => {
 
   const getButtonTitle = () => {
     if (selected.length > 2) {
-      return `${selected[0]}, ${selected[1]} and more ${selected.length - 2}`;
+      const firstItem = selected[0];
+      const secondItem = selected[1];
+      const remainingCount = selected.length - 2;
+
+      return `${firstItem}, ${secondItem} and more ${remainingCount}`;
     }
 
     const formatter = new Intl.ListFormat('en', {
@@ -49,11 +51,11 @@ export const DropdownButton = ({ buttonTitle, items }: DropdownButtonProps) => {
           renderIf={selected.length === 0}
           fallback={
             <S.EmptyButton type="button" onClick={() => setSelected([])}>
-              <CloseIcon color={theme.palette.secondary.medium} />
+              <Icon icon="close" color={theme.palette.secondary.medium} />
             </S.EmptyButton>
           }
         >
-          <ArrowDownIcon color={theme.palette.secondary.medium} />
+          <Icon icon="arrowDown" color={theme.palette.secondary.medium} />
         </ConditionalSlot>
       </S.ButtonWrapper>
       {open && (

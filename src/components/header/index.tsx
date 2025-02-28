@@ -1,4 +1,4 @@
-import { SearchIcon } from '../icons/search-icon';
+import { Icon } from '../icon';
 import * as S from './styles';
 
 export const Header = () => (
@@ -16,6 +16,6 @@ export const Header = () => (
     >
       <SearchButton /> */}
     {/* </ResponsiveToggle> */}
-    <SearchIcon color="black" />
+    <Icon icon="search" color="black" />
   </S.HeaderContainer>
 );

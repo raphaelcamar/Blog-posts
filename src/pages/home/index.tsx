@@ -2,9 +2,9 @@ import { Outlet } from 'react-router';
 import { DropdownButton } from '@/components/drop-down-button';
 import { Header } from '@/components/header';
 import * as S from './styles';
-import SortIcon from '@/components/icons/sort-icon';
 import { useThemeContext } from '@/providers/theme-provider';
 import { ResponsiveToggle } from '@/components/responsive-toggle';
+import { Icon } from '@/components/icon';
 
 export const HomePage = () => {
   const theme = useThemeContext();
@@ -28,7 +28,7 @@ export const HomePage = () => {
         <S.SortOption>
           <p>Sort By:</p>
           <span>Newest first</span>
-          <SortIcon color={theme.palette.accent1.medium} />
+          <Icon icon="sort" color={theme.palette.accent1.medium} />
         </S.SortOption>
       </S.SortOptionsAndSubtitle>
       <S.Spacing>
