@@ -1,4 +1,4 @@
-import { Icon } from '../icon';
+import { Icon } from '@/components/atoms';
 import * as S from './styles';
 
 export const Header = () => (

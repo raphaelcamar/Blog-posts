@@ -11,11 +11,15 @@ const breakpoints = {
 
 type BreakpointKey = keyof typeof breakpoints;
 
-interface ResponsiveToggleProps {
+type ResponsiveToggleProps = {
   maxBreakpoint: BreakpointKey;
   fallback: React.ReactNode;
-  children: React.ReactNode;
-}
+  children?: React.ReactNode;
+};
+
+const defaultProps = {
+  children: <></>,
+};
 
 export const ResponsiveToggle = ({ maxBreakpoint, fallback, children }: ResponsiveToggleProps) => {
   const maxWidth = breakpoints[maxBreakpoint];
@@ -33,3 +37,5 @@ export const ResponsiveToggle = ({ maxBreakpoint, fallback, children }: Responsi
 
   return <>{isSmallScreen ? fallback : children}</>;
 };
+
+ResponsiveToggle.defaultProps = defaultProps;

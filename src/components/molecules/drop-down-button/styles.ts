@@ -17,14 +17,14 @@ export const ButtonWrapper = styled.button<{ isOpen: boolean }>`
 
   &:hover {
     color: ${({ theme }) => theme.palette.secondary.medium};
-    background-color: ${({ theme }) => theme.palette.secondary.medium}05;
+    background-color: ${({ theme }) => theme.palette.secondary.medium}0D;
   }
 
   ${({ isOpen, theme }) =>
     isOpen &&
     css`
       color: ${theme.palette.secondary.medium};
-      background-color: ${theme.palette.secondary.medium}05;
+      background-color: ${theme.palette.secondary.medium}0D;
     `};
 `;
 
