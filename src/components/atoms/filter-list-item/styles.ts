@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+const OPACITY_FIVE_PERCENT = '0D';
+
 export const Container = styled.button<{ selected?: boolean }>`
   padding: 12px 8px;
   border: none;
@@ -27,7 +29,7 @@ export const Container = styled.button<{ selected?: boolean }>`
   ${({ selected, theme }) =>
     selected &&
     css`
-      background-color: ${theme.palette.accent1.light}0D;
+      background-color: ${theme.palette.accent1.light}${OPACITY_FIVE_PERCENT};
       border: 1px solid ${theme.palette.accent1.dark};
 
       span {

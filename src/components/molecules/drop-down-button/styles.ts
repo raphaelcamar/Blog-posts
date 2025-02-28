@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+const OPACITY_FIVE_PERCENT = '0D';
+
 export const ButtonWrapper = styled.button<{ isOpen: boolean }>`
   background-color: ${({ theme }) => theme.palette.neutrals.lightest};
   color: ${({ theme }) => theme.palette.secondary.medium};
@@ -17,14 +19,14 @@ export const ButtonWrapper = styled.button<{ isOpen: boolean }>`
 
   &:hover {
     color: ${({ theme }) => theme.palette.secondary.medium};
-    background-color: ${({ theme }) => theme.palette.secondary.medium}0D;
+    background-color: ${({ theme }) => theme.palette.secondary.medium}${OPACITY_FIVE_PERCENT};
   }
 
   ${({ isOpen, theme }) =>
     isOpen &&
     css`
       color: ${theme.palette.secondary.medium};
-      background-color: ${theme.palette.secondary.medium}0D;
+      background-color: ${theme.palette.secondary.medium}${OPACITY_FIVE_PERCENT};
     `};
 `;
 

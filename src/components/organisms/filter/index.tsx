@@ -1,7 +1,7 @@
 import { Icon } from '@/components/atoms';
 import * as S from './styles';
 import { useThemeContext } from '@/providers/theme-provider';
-import { FilterList } from '@/components/molecules';
+import { Button, FilterList } from '@/components/molecules';
 
 export const Filter = () => {
   const theme = useThemeContext();
@@ -14,7 +14,7 @@ export const Filter = () => {
       </S.Title>
       <FilterList title="Category" />
       <FilterList title="Author" />
-      <button type="button">Apply filter</button>
+      <Button type="button">Apply filter</Button>
     </S.Container>
   );
 };
