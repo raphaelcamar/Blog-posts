@@ -1,4 +1,4 @@
-import { TextEllipsis } from '../text-ellipsis';
+import { ArticleTag, TextEllipsis } from '@/components/atoms';
 import * as S from './styles';
 
 export const ArticleCard = () => (
@@ -25,9 +25,8 @@ export const ArticleCard = () => (
         </S.TitleAndDescription>
       </S.Informations>
       <S.Tags>
-        {/* Pode ser componente a tag */}
-        <S.Tag>Category 1</S.Tag>
-        <S.Tag>Category 2</S.Tag>
+        <ArticleTag text="Category 1" />
+        <ArticleTag text="Category 2" />
       </S.Tags>
     </S.Body>
   </S.Container>

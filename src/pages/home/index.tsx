@@ -1,10 +1,9 @@
 import { Outlet } from 'react-router';
-import { DropdownButton } from '@/components/drop-down-button';
+import { DropdownButton } from '@/components/molecules';
 import { Header } from '@/components/header';
 import * as S from './styles';
 import { useThemeContext } from '@/providers/theme-provider';
-import { ResponsiveToggle } from '@/components/responsive-toggle';
-import { Icon } from '@/components/icon';
+import { Icon, ResponsiveToggle } from '@/components/atoms';
 
 export const HomePage = () => {
   const theme = useThemeContext();

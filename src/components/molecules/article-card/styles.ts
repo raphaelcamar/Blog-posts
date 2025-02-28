@@ -63,15 +63,6 @@ export const Tags = styled.div`
   width: 180px;
 `;
 
-export const Tag = styled.div`
-  background-color: ${({ theme }) => theme.palette.neutrals.medium};
-  border-radius: 42px;
-  font: ${({ theme }) => theme.font.caption};
-  height: 32px;
-  text-align: center;
-  padding: 8px 12px;
-`;
-
 export const TitleAndDescription = styled.div`
   display: flex;
   flex-direction: column;

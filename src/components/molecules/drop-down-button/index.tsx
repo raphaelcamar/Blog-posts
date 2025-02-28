@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import * as S from './styles';
 import { useThemeContext } from '@/providers/theme-provider';
-import { ClickAwayListener } from '@/components/click-away-listener';
-import { ConditionalSlot } from '@/components/conditional-slot';
-import { Icon } from '../icon';
+import { ClickAwayListener, ConditionalSlot, Icon } from '@/components/atoms';
 
 type DropdownButtonProps = {
   items: string[];
