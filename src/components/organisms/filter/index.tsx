@@ -1,9 +1,16 @@
-import { Icon } from '@/components/atoms';
+import { CircularLoader, ConditionalSlot, Icon } from '@/components/atoms';
 import * as S from './styles';
 import { useThemeContext } from '@/providers/theme-provider';
 import { Button, FilterList } from '@/components/molecules';
+import { Author, Category } from '@/entities';
 
-export const Filter = () => {
+type FilterProps = {
+  authors: Author[];
+  categories: Category[];
+  loading: boolean;
+};
+
+export const Filter = ({ authors, categories, loading }: FilterProps) => {
   const theme = useThemeContext();
 
   return (
@@ -12,8 +19,10 @@ export const Filter = () => {
         <Icon icon="filter" color={theme.palette.neutrals.darkest} />
         <h2>Filters</h2>
       </S.Title>
-      <FilterList title="Category" />
-      <FilterList title="Author" />
+      <ConditionalSlot renderIf={!loading} fallback={<CircularLoader size={36} />}>
+        <FilterList title="Category" items={categories} />
+        <FilterList title="Author" items={authors} />
+      </ConditionalSlot>
       <Button type="button">Apply filter</Button>
     </S.Container>
   );

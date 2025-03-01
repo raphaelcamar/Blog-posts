@@ -68,7 +68,10 @@ export const BlogListPage = () => {
       </S.SortOptionsAndSubtitle>
 
       <S.Container>
-        <ResponsiveToggle maxBreakpoint="md" fallback={<Filter authors={authors} categories={categories} />} />
+        <ResponsiveToggle
+          maxBreakpoint="md"
+          fallback={<Filter authors={authors} categories={categories} loading={loading} />}
+        />
         <CardList />
       </S.Container>
     </>
