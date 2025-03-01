@@ -1,8 +1,8 @@
-import { PostRepository } from './protocol';
+import { PostProtocol } from './protocol';
 import { BaseServicesInstace } from '../base';
 import { Post } from '@/entities';
 
-export class PostService extends BaseServicesInstace implements PostRepository {
+export class PostService extends BaseServicesInstace implements PostProtocol {
   constructor() {
     super(process.env.BASE_URL);
   }

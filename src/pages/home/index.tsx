@@ -1,14 +1,22 @@
 import { Outlet } from 'react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DropdownButton, SortButton } from '@/components/molecules';
 import { Header } from '@/components/header';
 import * as S from './styles';
-import { ResponsiveToggle } from '@/components/atoms';
+import { CircularLoader, ConditionalSlot, ResponsiveToggle } from '@/components/atoms';
+import { Author, Category } from '@/entities';
+import { AuthorService } from '@/services/author/author-service';
+import { CategoryService } from '@/services/category/category-service';
 
 export const HomePage = () => {
-  const renderDesktopSubtitle = () => <S.Subtitle>DWS blog</S.Subtitle>;
+  const [authors, setAuthors] = useState<Author[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  const [loading, setLoading] = useState(true);
 
   const [sortBy, setSortBy] = useState<'newest' | 'oldest'>('newest');
+
+  const renderDesktopSubtitle = () => <S.Subtitle>DWS blog</S.Subtitle>;
 
   const getSortButtonTitle = () => {
     if (sortBy === 'newest') return 'Newest First';
@@ -24,19 +32,36 @@ export const HomePage = () => {
     }
   };
 
+  const getAuthorsAndCategories = async () => {
+    try {
+      const authorService = new AuthorService();
+      const categoryService = new CategoryService();
+
+      const [authorsData, categoriesData] = await Promise.all([
+        authorService.getAuthors(),
+        categoryService.getCategories(),
+      ]);
+
+      setAuthors(authorsData);
+      setCategories(categoriesData);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAuthorsAndCategories();
+  }, []);
+
   return (
     <S.Wrapper>
       <Header />
       <S.SortOptionsAndSubtitle>
         <ResponsiveToggle maxBreakpoint="md" fallback={renderDesktopSubtitle()}>
-          <DropdownButton
-            buttonTitle="Category"
-            items={['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5', 'Category 6']}
-          />
-          <DropdownButton
-            buttonTitle="Author"
-            items={['Author A', 'Author b', 'Author c', 'Author D', 'Author E', 'Author F']}
-          />
+          <ConditionalSlot renderIf={!loading} fallback={<CircularLoader />}>
+            <DropdownButton buttonTitle="Category" items={categories.map(category => category.name)} />
+            <DropdownButton buttonTitle="Author" items={authors.map(author => author.name)} />
+          </ConditionalSlot>
         </ResponsiveToggle>
         <S.SortOption>
           <p>Sort By:</p>
