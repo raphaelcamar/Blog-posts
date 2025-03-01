@@ -13,8 +13,20 @@ type FilterProps = {
 export const Filter = ({ authors, categories, loading }: FilterProps) => {
   const theme = useThemeContext();
 
+  const getAllSelectedOptions = () => {
+    const filterContainer = document.getElementById('filter-container');
+    const elements = filterContainer.querySelectorAll('[data-selected]');
+    const selectedValues = [];
+
+    elements.forEach((el: any) => {
+      if (el.dataset.selected !== 'false') {
+        selectedValues.push(el.dataset.selected);
+      }
+    });
+  };
+
   return (
-    <S.Container>
+    <S.Container id="filter-container">
       <S.Title>
         <Icon icon="filter" color={theme.palette.neutrals.darkest} />
         <h2>Filters</h2>
@@ -23,7 +35,9 @@ export const Filter = ({ authors, categories, loading }: FilterProps) => {
         <FilterList title="Category" items={categories} />
         <FilterList title="Author" items={authors} />
       </ConditionalSlot>
-      <Button type="button">Apply filter</Button>
+      <Button type="button" onClick={() => getAllSelectedOptions()}>
+        Apply filter
+      </Button>
     </S.Container>
   );
 };

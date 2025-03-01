@@ -14,7 +14,7 @@ export const FilterList = ({ title, items }: FilterListProps) => (
     <h3>{title}</h3>
     <S.FilterListItems>
       {items.map(item => (
-        <FilterListItem key={item.id} label={item.name} />
+        <FilterListItem key={item.id} label={item.name} id={item.id} />
       ))}
     </S.FilterListItems>
   </S.Container>
