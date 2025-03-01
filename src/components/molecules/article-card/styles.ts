@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.button`
+  all: unset;
   border-radius: 16px;
   width: 314px;
   background-color: ${({ theme }) => theme.palette.neutrals.lightest};
