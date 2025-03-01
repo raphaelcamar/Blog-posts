@@ -7,15 +7,6 @@ export const Header = () => (
       <h1>dentsu</h1>
       <span>world services</span>
     </S.HeaderTitle>
-    {/* <ResponsiveToggle
-      maxBreakpoint="md"
-      fallback={
-        <>
-        </>
-      }
-    >
-      <SearchButton /> */}
-    {/* </ResponsiveToggle> */}
     <Icon icon="search" color="black" />
   </S.HeaderContainer>
 );
