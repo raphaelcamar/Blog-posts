@@ -12,16 +12,37 @@ export const Container = styled.div`
   }
 `;
 
-export const CardList = styled.div`
+export const SortOptionsAndSubtitle = styled.div`
   display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+
+  @media (min-width: 960px) {
+    padding-top: 36px;
+  }
 `;
 
-export const WrapperLoader = styled.div`
+export const SortOption = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100%;
+  gap: 6px;
+
+  p {
+    font: ${({ theme }) => theme.font.bodySmall};
+    font-weight: bold;
+
+    @media (max-width: 960px) {
+      display: none;
+    }
+  }
+
+  span {
+    font: ${({ theme }) => theme.font.bodySmall};
+    font-weight: lighter;
+  }
+`;
+
+export const Subtitle = styled.h2`
+  font: ${({ theme }) => theme.font.h2};
 `;

@@ -1,42 +1,76 @@
 import { useEffect, useState } from 'react';
-import { ArticleCard } from '@/components/molecules';
+import { DropdownButton, SortButton } from '@/components/molecules';
 import * as S from './styles';
 import { CircularLoader, ConditionalSlot, ResponsiveToggle } from '@/components/atoms';
-import { Filter } from '@/components/organisms';
-import { PostService } from '@/services/posts/post-service';
-import { Post } from '@/entities';
+import { CardList, Filter } from '@/components/organisms';
+import { Author, Category } from '@/entities';
+import { AuthorService } from '@/services/author/author-service';
+import { CategoryService } from '@/services/category/category-service';
 
 export const BlogListPage = () => {
-  const [posts, setPosts] = useState<Post[]>(null!);
+  const [authors, setAuthors] = useState<Author[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+
   const [loading, setLoading] = useState(true);
 
-  const getPosts = async () => {
-    try {
-      const service = new PostService();
-      const data = await service.getPosts();
+  const [sortBy, setSortBy] = useState<'newest' | 'oldest'>('newest');
 
-      setPosts(data);
+  const renderDesktopSubtitle = () => <S.Subtitle>DWS blog</S.Subtitle>;
+
+  const getSortButtonTitle = () => {
+    if (sortBy === 'newest') return 'Newest First';
+
+    return 'Oldest first';
+  };
+
+  const updateSortOption = () => {
+    if (sortBy === 'newest') {
+      setSortBy('oldest');
+    } else {
+      setSortBy('newest');
+    }
+  };
+
+  const getAuthorsAndCategories = async () => {
+    try {
+      const authorService = new AuthorService();
+      const categoryService = new CategoryService();
+
+      const [authorsData, categoriesData] = await Promise.all([
+        authorService.getAuthors(),
+        categoryService.getCategories(),
+      ]);
+
+      setAuthors(authorsData);
+      setCategories(categoriesData);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getPosts();
+    getAuthorsAndCategories();
   }, []);
 
-  const renderLoading = () => (
-    <S.WrapperLoader>
-      <CircularLoader size={48} />
-    </S.WrapperLoader>
-  );
-
   return (
-    <S.Container>
-      <ResponsiveToggle maxBreakpoint="md" fallback={<Filter />} />
-      <ConditionalSlot renderIf={!loading && !!posts.length} fallback={renderLoading()}>
-        <S.CardList>{posts?.map(post => <ArticleCard post={post} />)}</S.CardList>
-      </ConditionalSlot>
-    </S.Container>
+    <>
+      <S.SortOptionsAndSubtitle>
+        <ResponsiveToggle maxBreakpoint="md" fallback={renderDesktopSubtitle()}>
+          <ConditionalSlot renderIf={!loading} fallback={<CircularLoader />}>
+            <DropdownButton buttonTitle="Category" items={categories.map(category => category.name)} />
+            <DropdownButton buttonTitle="Author" items={authors.map(author => author.name)} />
+          </ConditionalSlot>
+        </ResponsiveToggle>
+        <S.SortOption>
+          <p>Sort By:</p>
+          <SortButton onClick={() => updateSortOption()}>{getSortButtonTitle()}</SortButton>
+        </S.SortOption>
+      </S.SortOptionsAndSubtitle>
+
+      <S.Container>
+        <ResponsiveToggle maxBreakpoint="md" fallback={<Filter authors={authors} categories={categories} />} />
+        <CardList />
+      </S.Container>
+    </>
   );
 };

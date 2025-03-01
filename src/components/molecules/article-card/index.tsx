@@ -37,7 +37,7 @@ export const ArticleCard = ({ post }: ArticleCardProps) => {
         </S.Informations>
         <S.Tags>
           {post.categories.map(category => (
-            <ArticleTag text={category.name} />
+            <ArticleTag key={category.id} text={category.name} />
           ))}
         </S.Tags>
       </S.Body>

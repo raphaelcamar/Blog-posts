@@ -59,7 +59,7 @@ export const DropdownButton = ({ buttonTitle, items }: DropdownButtonProps) => {
       {open && (
         <S.BodyItemView>
           {items.map(item => (
-            <S.ItemVew role="button" onClick={() => selectItem(item)}>
+            <S.ItemVew key={item} role="button" onClick={() => selectItem(item)}>
               {item}
             </S.ItemVew>
           ))}
