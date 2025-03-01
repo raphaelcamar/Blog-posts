@@ -7,8 +7,8 @@ export class Post {
   public content: string;
   public thumbnail_url: string;
   public authorId: string;
-  public createdAt: string;
-  public updatedAt: string;
+  public createdAt: Date;
+  public updatedAt: Date;
   public categories: Category[];
   public author: Author;
 
@@ -18,8 +18,8 @@ export class Post {
     this.content = data.content;
     this.thumbnail_url = data.thumbnail_url;
     this.authorId = data.authorId;
-    this.createdAt = data.createdAt;
-    this.updatedAt = data.updatedAt;
+    this.createdAt = new Date(data.createdAt);
+    this.updatedAt = new Date(data.updatedAt);
     this.author = new Author(data.author);
     this.categories = data.categories.map(category => new Category(category));
   }

@@ -1,13 +1,11 @@
-import React, { ReactNode } from 'react';
-
 const defaultProps = {
   fallback: <></>,
 };
 
 type ConditionalSlotProps = {
   renderIf: boolean;
-  fallback: ReactNode;
-  children: ReactNode;
+  fallback: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export const ConditionalSlot = ({ renderIf, fallback, children }: ConditionalSlotProps) => (

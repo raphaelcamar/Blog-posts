@@ -1,7 +1,6 @@
 
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const envFile = './.env'
@@ -61,7 +60,6 @@ module.exports = {
       template: path.resolve(__dirname, 'public/index.html'),
     }),
 
-    new webpack.HotModuleReplacementPlugin({}),
     new Dotenv({
       path: envFile,
       safe: true,

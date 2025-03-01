@@ -18,3 +18,10 @@ export const CardList = styled.div`
   flex-wrap: wrap;
   align-items: center;
 `;
+
+export const WrapperLoader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;

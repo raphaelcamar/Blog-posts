@@ -7,8 +7,9 @@ export class PostService extends BaseServicesInstace implements PostRepository {
     super(process.env.BASE_URL);
   }
 
-  async getPosts(): Promise<Post.Server[]> {
-    const { data } = await this._instance.get<Post[]>('/posts');
+  async getPosts(): Promise<Post[]> {
+    const { data } = await this._instance.get<Post.Server[]>('/posts');
+
     const adapteePosts = data.map(post => new Post(post));
 
     return adapteePosts;

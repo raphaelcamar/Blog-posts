@@ -33,7 +33,7 @@ export const DateAndAuthor = styled.div`
   gap: 8px;
   align-items: center;
 
-  data,
+  span,
   p {
     font: ${({ theme }) => theme.font.caption};
     color: ${({ theme }) => theme.palette.neutrals.dark};
