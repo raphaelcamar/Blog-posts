@@ -41,7 +41,7 @@ export const DateAndAuthor = styled.div`
   }
 `;
 
-export const Bullet = styled.circle`
+export const Bullet = styled.div`
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -52,8 +52,10 @@ export const Title = styled.h3`
   font: ${({ theme }) => theme.font.h3};
 `;
 
-export const Description = styled.p`
-  font: ${({ theme }) => theme.font.bodySmall};
+export const Description = styled.div`
+  p {
+    font: ${({ theme }) => theme.font.bodySmall};
+  }
 `;
 
 export const Tags = styled.div`

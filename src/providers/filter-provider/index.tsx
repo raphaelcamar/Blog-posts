@@ -1,7 +1,11 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo, useState } from 'react';
 
 type FilterContextProps = {
-  filter: any;
+  authorFilters: string[];
+  setAuthors: React.Dispatch<React.SetStateAction<string[]>>;
+  // categories: string[];
+  // sort: 'oldest' | 'newest';
+  // text: string;
 };
 
 export const FilterContext = createContext<FilterContextProps>({} as FilterContextProps);
@@ -9,8 +13,13 @@ export const FilterContext = createContext<FilterContextProps>({} as FilterConte
 export const useFilterContext = (): FilterContextProps => useContext(FilterContext);
 
 export const ProfileProvider = ({ children }: { children: React.ReactNode }): React.ReactElement => {
-  // const [state, dispatch] = useReducer(reducer, initialState);
-  const filter = '';
+  const [authorFilters, setAuthorsFilters] = useState();
 
-  return <FilterContext.Provider value={{ filter }}>{children}</FilterContext.Provider>;
+  const memoizedFilter = useMemo(() => authorFilters, []);
+
+  return (
+    <FilterContext.Provider value={{ authorFilters: memoizedFilter, setAuthors: setAuthorsFilters }}>
+      {children}
+    </FilterContext.Provider>
+  );
 };

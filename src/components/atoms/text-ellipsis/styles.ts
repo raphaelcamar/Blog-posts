@@ -4,7 +4,7 @@ type EllipsisType = {
   rows: number;
 };
 
-export const Ellipsis = styled.div<EllipsisType>`
+export const Ellipsis = styled.p<EllipsisType>`
   text-overflow: ellipsis;
   white-space: normal;
   overflow: hidden;

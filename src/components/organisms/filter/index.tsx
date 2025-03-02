@@ -1,8 +1,10 @@
+import { memo } from 'react';
 import { CircularLoader, ConditionalSlot, Icon } from '@/components/atoms';
 import * as S from './styles';
 import { useThemeContext } from '@/providers/theme-provider';
 import { Button, FilterList } from '@/components/molecules';
 import { Author, Category } from '@/entities';
+import { useFilterContext } from '@/providers/filter-provider';
 
 type FilterProps = {
   authors: Author[];
@@ -12,6 +14,7 @@ type FilterProps = {
 
 export const Filter = ({ authors, categories, loading }: FilterProps) => {
   const theme = useThemeContext();
+  const { setAuthors } = useFilterContext();
 
   const getAllSelectedOptions = () => {
     const filterContainer = document.getElementById('filter-container');
@@ -23,6 +26,8 @@ export const Filter = ({ authors, categories, loading }: FilterProps) => {
         selectedValues.push(el.dataset.selected);
       }
     });
+
+    setAuthors(selectedValues);
   };
 
   return (
@@ -41,3 +46,5 @@ export const Filter = ({ authors, categories, loading }: FilterProps) => {
     </S.Container>
   );
 };
+
+export default memo(Filter);
